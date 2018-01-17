@@ -88,6 +88,23 @@ public class LonelyTwitterActivity extends Activity {
             Log.d("Tweet Polymorphism", t.isImportant().toString());
 
         }
+
+        ArrayList <Tweetable> tweetableList = new ArrayList<Tweetable>();
+        tweets1.add(normalTweet);
+        tweets1.add(normalTweet1);
+        tweets1.add(normalTweet2);
+        tweets1.add(importantTweet);
+        tweets1.add(importantTweet1);
+
+        String messageOnScreen = "";
+        for (Tweetable t:
+                tweetableList){
+            messageOnScreen += t.getMessage() + "\n";
+
+        }
+        Toast.makeText(this, messageOnScreen, Toast.LENGTH_SHORT).show();
+
+
 	}
 
 	private String[] loadFromFile() {
