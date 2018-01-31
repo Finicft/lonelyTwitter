@@ -26,6 +26,14 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+/**
+ * Represents an Activity
+ *
+ * @author fc1
+ * @version 1.0
+ * @see Tweet
+ *
+ */
 public class LonelyTwitterActivity extends Activity {
 
 	private static final String FILENAME = "tweets.sav";
@@ -35,8 +43,12 @@ public class LonelyTwitterActivity extends Activity {
 	private ArrayList<Tweet> tweetList;
 	private ArrayAdapter<Tweet> adapter;
 
-	
-	/** Called when the activity is first created. */
+
+	/**
+	 * Called when the activity is first created.
+	 *
+	 * @param savedInstanceState state of the instance
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -50,6 +62,11 @@ public class LonelyTwitterActivity extends Activity {
 
 		saveButton.setOnClickListener(new View.OnClickListener() {
 
+			/**
+			 * Called when save button clicked
+			 *
+			 * @param v v of the button
+			 */
 			public void onClick(View v) {
 				setResult(RESULT_OK);
 				String text = bodyText.getText().toString();
@@ -71,7 +88,12 @@ public class LonelyTwitterActivity extends Activity {
 
         clearButton.setOnClickListener(new View.OnClickListener() {
 
-            public void onClick(View v) {
+			/**
+			 * Called when clear button is clicked
+			 *
+			 * @param v View of the button
+			 */
+			public void onClick(View v) {
                 setResult(RESULT_OK);
 
                 tweetList.clear();
@@ -85,6 +107,9 @@ public class LonelyTwitterActivity extends Activity {
         });
 	}
 
+	/**
+	 * Called when the activity starts
+	 */
 	@Override
 	protected void onStart() {
 		// TODO Auto-generated method stub
@@ -111,6 +136,9 @@ public class LonelyTwitterActivity extends Activity {
 
 	}
 
+	/**
+	 * Loads from the file
+	 */
 	private void loadFromFile() {
 
 		try {
@@ -132,7 +160,10 @@ public class LonelyTwitterActivity extends Activity {
 			throw new RuntimeException();
 		}
 	}
-	
+
+	/**
+	 * Save the contents to the file
+	 */
 	private void saveInFile() {
 		try {
 			FileOutputStream fos = openFileOutput(FILENAME,
@@ -153,6 +184,9 @@ public class LonelyTwitterActivity extends Activity {
 		}
 	}
 
+	/**
+	 * Called when the activity is destroyed
+	 */
 	@Override
     protected void onDestroy(){
 	    super.onDestroy();
