@@ -3,6 +3,7 @@ package ca.ualberta.cs.lonelytwitter;
 import android.app.Activity;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.EditText;
+import android.widget.ListView;
 
 import com.robotium.solo.Solo;
 
@@ -40,6 +41,27 @@ public class LonelyTwitterActivityTest extends ActivityInstrumentationTestCase2 
         assertFalse(solo.searchText("Test Tweet!"));
     }
 
+    public void testClickTweetList(){
+        LonelyTwitterActivity activity = (LonelyTwitterActivity) solo.getCurrentActivity();
+
+        solo.assertCurrentActivity("Wrong activity", LonelyTwitterActivity.class);
+        solo.clickOnButton("Clear");
+
+        solo.enterText((EditText) solo.getView(R.id.body), "Tweet test!");
+        solo.clickOnButton("Save");
+        solo.waitForText("Tweet test!");
+
+        final ListView oldTweetList = activity.getOldTweetsList();
+        Tweet tweet = (Tweet) oldTweetList.getItemAtPosition(0);
+        assertEquals("Tweet test!", tweet.getMessage());
+
+        solo.clickInList(0);
+        solo.assertCurrentActivity("Wrong activity!", EditTweetActivity.class);
+        assertTrue(solo.waitForText("TextView"));
+
+        solo.goBack();
+        solo.assertCurrentActivity("Wrong activity!", LonelyTwitterActivity.class);
+    }
     @Override
     public void tearDown() throws Exception{
         solo.finishOpenedActivities();

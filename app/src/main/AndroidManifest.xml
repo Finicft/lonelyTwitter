@@ -24,8 +24,7 @@
         </activity>
         <activity
             android:name=".EditTweetActivity"
-            android:label="@string/title_activity_edit_tweet"
-            android:theme="@style/AppTheme"></activity>
+            android:label="@string/title_activity_edit_tweet"></activity>
     </application>
 
 </manifest>
